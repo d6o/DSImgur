@@ -14,7 +14,7 @@
 
 import sys
 import argparse
-import libs.mdownload.mdownload
+from libs.mdownload.mdownload import mdownload
 import re
 import urlparse
 
@@ -56,6 +56,7 @@ class imgur:
 		if not path.endswith('/'):
 			path += '/'
 		path += 'zip'
+		path = path.replace("/gallery/", "/a/")
 		return 'https://imgur.com'+path
 
 	def _prepareDirect(self, path):
@@ -69,6 +70,7 @@ class imgur:
 	def download(self):
 		if len(self.dlList) <= 0:
 			return false
+
 		mdownload(self.dlList, self._workers, self._folderPath)
 
 
@@ -86,12 +88,9 @@ def main(argv):
 
 	try:
 		i = imgur(args.urls, args.threads, args.output)
-		result = i.download()
+		i.download()
 
-		if not result:
-			print "no valid URL"
-
-		print 'Finished.'
+		print 'All images have been downloaded.'
 	except KeyboardInterrupt:
 		print 'Interrupt received, stopping downloads'
 
