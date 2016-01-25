@@ -22,11 +22,18 @@ class imgur:
 
 	domains = ['imgur.com', 'i.imgur.com']
 
-	def __init__(self, urlList, workers, folderPath):
-		self._urlList		= urlList
+	def __init__(self, workers, folderPath):
+		self._urlList		= []
 		self._workers 		= workers
 		self._folderPath 	= folderPath
 		self.dlList			= []
+
+	def addUrl(self, url):
+
+		if type(url) is list:
+			self._urlList += url
+		else:
+			self._urlList.append(url)
 
 		self._prepareUrlList()
 
@@ -52,6 +59,8 @@ class imgur:
 				self.dlList.append(self._prepareSingle(parse.path))
 				continue
 
+		self._urlList 	= []
+
 	def _prepareAlbum(self, path):
 		if not path.endswith('/'):
 			path += '/'
@@ -69,9 +78,13 @@ class imgur:
 
 	def download(self):
 		if len(self.dlList) <= 0:
-			return false
+			return False
 
 		mdownload(self.dlList, self._workers, self._folderPath)
+
+		self.dlList = []
+
+		return True
 
 
 def main(argv):
@@ -87,7 +100,8 @@ def main(argv):
 	args = parser.parse_args()
 
 	try:
-		i = imgur(args.urls, args.threads, args.output)
+		i = imgur(args.threads, args.output)
+		i.addUrl(args.urls)
 		i.download()
 
 		print 'All images have been downloaded.'
