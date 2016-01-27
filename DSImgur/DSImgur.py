@@ -21,17 +21,19 @@ import re
 import urlparse
 import json
 import urllib
-from libs.mdownload.mdownload import mdownload
+# https://github.com/DiSiqueira/DSDownload
+from DSDownload import DSDownload
 
-class imgur:
+class DSImgur:
 
 	profile_link = 'https://{subdomain}.imgur.com/ajax/images?sort=0&order=1&album=0&page={page}&perPage=60'
 
-	def __init__(self, workers, folderPath):
+	def __init__(self, workers, folderPath, protocol = 'https://'):
 		self._urlList		= []
 		self._workers 		= workers
 		self._folderPath 	= folderPath
 		self.dlList			= []
+		self._protocol		= protocol
 
 	def addUrl(self, url, folder = ''):
 
@@ -67,7 +69,7 @@ class imgur:
 			parse 		= urlparse.urlparse(url)
 
 			#Junk urls
-			if (not parse.netloc.find('imgur.com')) and (not parse.netloc == 'imgur.com') :
+			if parse.netloc.find('imgur.com') < 0 :
 				continue
 
 			#https://fallinloveyoulose.imgur.com/*
@@ -150,19 +152,19 @@ class imgur:
 			path += '/'
 		path += 'zip'
 		path = path.replace("/gallery/", "/a/")
-		url = 'https://imgur.com'+path
+		url = self._protocol+'imgur.com'+path
 		self._appendUrl(url,folder)
 		return url
 
 	def _prepareDirect(self, path, folder):
-		url = 'https://i.imgur.com'+path
+		url = self._protocol+'i.imgur.com'+path
 		self._appendUrl(url,folder)
 		return url
 
 	def _prepareSingle(self, path, folder):
 		if path.endswith('/'):
 			path = path[:-1]
-		url = 'https://i.imgur.com'+path+'.jpg'
+		url = self._protocol+'i.imgur.com'+path+'.jpg'
 		self._appendUrl(url,folder)
 		return url
 
@@ -171,7 +173,7 @@ class imgur:
 		if len(self.dlList) <= 0:
 			return False
 
-		mdownload(self.dlList, self._workers, self._folderPath)
+		DSDownload.DSDownload(self.dlList, self._workers, self._folderPath)
 
 		self.dlList = []
 
@@ -185,13 +187,20 @@ def main(argv):
 		help="Number of parallel downloads. The default is 5.")
 	parser.add_argument("--output", type=str, default="downloads", 
 		help="Output folder")
+	parser.add_argument("--http", action="store_true",
+		help="Force use of insecure HTTP. Default is HTTPS")
 	parser.add_argument('urls', type=str, nargs='+',
 		help='URLs to be downloaded')
 
 	args = parser.parse_args()
 
+	protocol = 'https://'
+
+	if args.http:
+		protocol = 'http://'
+
 	try:
-		i = imgur(args.threads, args.output)
+		i = imgur(args.threads, args.output,protocol)
 		i.addUrl(args.urls)
 		i.download()
 
