@@ -66,6 +66,8 @@ class DSImgur:
 
 		for url in self._urlList:
 
+			print 'Preparing url:', url
+
 			parse 		= urlparse.urlparse(url)
 
 			#Junk urls
@@ -188,7 +190,7 @@ def main(argv):
 	parser.add_argument("--output", type=str, default="downloads", 
 		help="Output folder")
 	parser.add_argument("--http", action="store_true",
-		help="Force use of insecure HTTP. Default is HTTPS")
+		help="Force use HTTP (Insecure). Default is HTTPS")
 	parser.add_argument('urls', type=str, nargs='+',
 		help='URLs to be downloaded')
 
@@ -200,7 +202,7 @@ def main(argv):
 		protocol = 'http://'
 
 	try:
-		i = imgur(args.threads, args.output,protocol)
+		i = DSImgur(args.threads, args.output,protocol)
 		i.addUrl(args.urls)
 		i.download()
 
