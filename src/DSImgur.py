@@ -2,7 +2,7 @@
 
 '''
 	Diego Martins de Siqueira
-	A perfect Imgur Downloader
+	DSImgur - Easily download images, Albums, Galleries and entire Profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!
 
 
 	Urls Example:
@@ -20,13 +20,19 @@ import argparse
 import re
 import urlparse
 import json
-import urllib
+
+if sys.version_info[0] == 2:
+    import urllib
+else:
+    import urllib.request as urllib
+    
 # https://github.com/DiSiqueira/DSDownload
 from DSDownload import DSDownload
 
 class DSImgur:
 
 	profile_link = 'https://{subdomain}.imgur.com/ajax/images?sort=0&order=1&album=0&page={page}&perPage=60'
+	albums_link = 'https://{subdomain}.imgur.com/'
 
 	def __init__(self, workers, folderPath, protocol = 'https://'):
 		self._urlList		= []
@@ -65,9 +71,6 @@ class DSImgur:
 		direct 	= re.compile('(\/[a-zA-Z\d]+)(\.\w{3,4})')
 
 		for url in self._urlList:
-
-			print 'Preparing url:', url
-
 			parse 		= urlparse.urlparse(url)
 
 			#Junk urls
@@ -101,7 +104,7 @@ class DSImgur:
 
 		self._urlList 	= []
 
-	def _getProfile(self, subdomain, page):
+	def _getProfileImages(self, subdomain, page):
 		url = self.profile_link.replace('{subdomain}',subdomain)
 		url = url.replace('{page}',str(page))
 
@@ -116,6 +119,18 @@ class DSImgur:
 			return False
 
 		return result
+
+	def _getProfileAlbums(self, subdomain):
+		url = self.albums_link.replace('{subdomain}',subdomain)
+		content = urllib.urlopen(url)
+
+		data = content.read()
+		content.close()
+
+		regex		= ur"id=\"album-(.+?)\""
+		album_list	= re.findall(regex, data)
+
+		return album_list
 
 	def _appendUrl(self, url, folder):
 		link = {
@@ -135,7 +150,7 @@ class DSImgur:
 			page 	+=  1
 			total 	+=	60
 
-			result 	= self._getProfile(subdomain, page)
+			result 	= self._getProfileImages(subdomain, page)
 
 			if result == False:
 				return False
@@ -147,11 +162,17 @@ class DSImgur:
 				path = '/'+image['hash']+image['ext']
 				self._prepareDirect(path,subdomain)
 
+		album_list 	= self._getProfileAlbums(subdomain)
+
+		for album in album_list:
+			self._prepareAlbum('/a/' + album,subdomain)
+
 		return True
 
 	def _prepareAlbum(self, path, folder):
 		if not path.endswith('/'):
 			path += '/'
+
 		path += 'zip'
 		path = path.replace("/gallery/", "/a/")
 		url = self._protocol+'imgur.com'+path
@@ -175,42 +196,8 @@ class DSImgur:
 		if len(self.dlList) <= 0:
 			return False
 
-		DSDownload.DSDownload(self.dlList, self._workers, self._folderPath)
+		DSDownload(self.dlList, self._workers, self._folderPath)
 
 		self.dlList = []
 
 		return True
-
-
-def main(argv):
-	parser = argparse.ArgumentParser(
-		description = "A perfect Imgur Downloader.")
-	parser.add_argument("--threads", type=int, default=5, 
-		help="Number of parallel downloads. The default is 5.")
-	parser.add_argument("--output", type=str, default="downloads", 
-		help="Output folder")
-	parser.add_argument("--http", action="store_true",
-		help="Force use HTTP (Insecure). Default is HTTPS")
-	parser.add_argument('urls', type=str, nargs='+',
-		help='URLs to be downloaded')
-
-	args = parser.parse_args()
-
-	protocol = 'https://'
-
-	if args.http:
-		protocol = 'http://'
-
-	try:
-		i = DSImgur(args.threads, args.output,protocol)
-		i.addUrl(args.urls)
-		i.download()
-
-		print 'All images have been downloaded.'
-	except KeyboardInterrupt:
-		print 'Interrupt received, stopping downloads'
-
-	sys.exit()
-
-if __name__ == "__main__":
-   main(sys.argv[1:])

@@ -1,21 +1,20 @@
-# DSImgur
+# DSImgur ![Language Badge](https://img.shields.io/badge/Language-Python-red.svg) ![License Badge](https://img.shields.io/badge/License-MIT-blue.svg) ![Status Badge](https://img.shields.io/badge/Status-Stable-brightgreen.svg)
 
-Easily download images, Albums and entire profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!
+Easily download images, Albums, Galleries and entire Profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!
 
 ![](https://i.imgur.com/ytEp7fG.gif)
 
 ## Features
 
 - Download Single Images ex.: https://imgur.com/EJtc5ox or http://i.imgur.com/EJtc5ox.jpg
-- Download Entire Albums ex.: https://imgur.com/a/GpDQW or https://imgur.com/gallery/GpDQW
-- Download Entire PROFILES ex.: https://imgur.com/user/ytho34/ or https://imgur.com/account/ytho34/
+- Download Entire Albums ex.: https://imgur.com/a/iwWZm 
+- Download Entire Galleries ex.: https://imgur.com/gallery/3ttnIn2
+- Download Entire PROFILES ex.: https://imgur.com/user/azyrusmax/ or https://imgur.com/account/azyrusmax/
 - Written in uncomplicated Python
 - Easily download files in the fastest speed possible
-- Up to 452% faster than traditional download using Multi-Threaded Downloads
+- Download using Multi-Threaded Downloads
 - Easy to [install](https://github.com/DiSiqueira/DSImgur#installation)
 - Stupidly [easy to use](https://github.com/DiSiqueira/DSImgur#usage)
-- Uses natives libs
-- Option to organize your files
 - Download 100 files in less than 40s
 
 ## Installation
@@ -29,8 +28,8 @@ $ pip install DSImgur
 ### Option 2: From source
 
 ```bash
-$ git clone https://github.com/DiSiqueira/DSDownload.git
-$ cd DSDownload/
+$ git clone https://github.com/DiSiqueira/DSImgur.git
+$ cd DSImgur/
 $ python setup.py install
 ```
 
@@ -39,48 +38,76 @@ $ python setup.py install
 ### Basic usage
 
 ```bash
-# Download a file
-$ dsdownload https://i.imgur.com/eUrbKtO.jpg
+# Download a image
+$ DSImgur https://imgur.com/eUrbKtO
+# Download a direct
+$ DSImgur https://i.imgur.com/eUrbKtO.jpg
+# Download a Album
+$ DSImgur https://imgur.com/a/iwWZm
+# Download a Gallery
+$ DSImgur https://imgur.com/gallery/3ttnIn2
+# Download a Entire Profile
+$ DSImgur https://imgur.com/user/azyrusmax
 ```
 
 ### Download using Workers
 
 ```bash
-# Download 3 files using 2 Workers
-$ dsdownload --workers 2 https://i.imgur.com/eUrbKtO.jpg https://i.imgur.com/9am20SK.jpg https://i.imgur.com/KR06C.jpg
+# Download 1 image and 2 albums using 2 Workers
+$ DSImgur --workers 2 https://i.imgur.com/eUrbKtO.jpg https://imgur.com/a/iwWZm https://imgur.com/a/3ttnIn2
+```
+
+### Set output folder
+
+```bash
+# Download 1 image and put it in my-images folder
+$ DSImgur --output my-images https://i.imgur.com/eUrbKtO.jpg
 ```
 
 ### Combine everything
 
 ```bash
-# Download 3 files using 2 Workers and put on my-images folder
-$ dsdownload --output my-images --workers 2 https://i.imgur.com/eUrbKtO.jpg https://i.imgur.com/9am20SK.jpg https://i.imgur.com/KR06C.jpg
+# Download 1 image and 2 albums using 2 Workers and put on my-images folder
+$ DSImgur --output my-images --workers 2 https://i.imgur.com/eUrbKtO.jpg https://imgur.com/a/iwWZm https://imgur.com/a/3ttnIn2
+```
+
+## Module Usage
+The module allows you to download url lists in your own Python programs without going through the command line. Here's an example of it's usage:
+
+###Example
+```python
+from DSImgur import DSImgur
+
+urls = ['https://imgur.com/eUrbKtOg', 'https://i.imgur.com/eUrbKtO.jpg', 'https://imgur.com/a/iwWZm', 'https://imgur.com/gallery/3ttnIn2', 'https://imgur.com/user/azyrusmax']
+workers = 2
+output = 'My-Files'
+
+DSImgur(urls, workers, output)
 ```
 
 ## Program Help
 
-![](https://i.imgur.com/0EXBDFM.png)
+![](https://i.imgur.com/D0X7T1S.png)
 
 ## Contributing
 
 ### Bug Reports & Feature Requests
 
-Please use the [issue tracker](https://github.com/DiSiqueira/DSDownload/issues) to report any bugs or file feature requests.
+Please use the [issue tracker](https://github.com/DiSiqueira/DSImgur/issues) to report any bugs or file feature requests.
 
 ### Developing
 
 PRs are welcome. To begin developing, do this:
 
 ```bash
-$ git clone --recursive git@github.com:DiSiqueira/DSDownload.git
-$ cd DSDownload/DSDownload/
-$ python DSDownload.py
+$ git clone --recursive git@github.com:DiSiqueira/DSImgur.git
+$ cd DSImgur/src/
 ```
 
 ## Social Coding
 
 1. Create an issue to discuss about your idea
-2. [Fork it] (https://github.com/DiSiqueira/DSDownload/fork)
+2. [Fork it] (https://github.com/DiSiqueira/DSImgur/fork)
 3. Create your feature branch (`git checkout -b my-new-feature`)
 4. Commit your changes (`git commit -am 'Add some feature'`)
 5. Push to the branch (`git push origin my-new-feature`)

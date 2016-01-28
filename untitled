@@ -1,0 +1,23 @@
+clear; echo '~~~~~ DSImgur - Imgur Downloader ~~~~~\n\nDownload a file\n';
+dsimgur https://imgur.com/eUrbKtO
+
+clear; echo '~~~~~ DSImgur - Imgur Downloader ~~~~~\n\nDownload a Direct Image\n';
+dsimgur https://i.imgur.com/eUrbKtO.jpg
+
+clear; echo '~~~~~ DSImgur - Imgur Downloader ~~~~~\n\nDownload a Entire Album\n';
+dsimgur https://imgur.com/a/iwWZm
+
+clear; echo '~~~~~ DSImgur - Imgur Downloader ~~~~~\n\nDownload a Entire Gallery\n';
+dsimgur https://imgur.com/gallery/3ttnIn2
+
+clear; echo '~~~~~ DSImgur - Imgur Downloader ~~~~~\n\nDownload a Entire Profile\n';
+dsimgur https://imgur.com/user/azyrusmax
+
+clear; echo '~~~~~ DSImgur - Imgur Downloader ~~~~~\n\nDownload using Workers (Multi-Thread)\nDownload 1 image and 2 albums using 2 Workers\n';
+dsimgur --workers 2 https://i.imgur.com/eUrbKtO.jpg https://imgur.com/a/iwWZm https://imgur.com/a/3ttnIn2
+
+clear; echo '~~~~~ DSImgur - Imgur Downloader ~~~~~\n\nOrganize your files\nDownload 1 image and put it in my-images folder\n';
+dsimgur --output my-images https://i.imgur.com/eUrbKtO.jpg
+
+clear; echo '~~~~~ DSImgur - Imgur Downloader ~~~~~\n\nCombine everything\nDownload 1 image and 2 albums using 2 Workers and put on my-images folder\n';
+dsimgur --output my-images --workers 2 https://i.imgur.com/eUrbKtO.jpg https://imgur.com/a/iwWZm https://imgur.com/a/3ttnIn2
