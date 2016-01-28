@@ -2,7 +2,7 @@
 
 Easily download images, Albums, Galleries and entire Profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!
 
-![](https://i.imgur.com/ytEp7fG.gif)
+![](https://i.imgur.com/Sh2TKvy.gif)
 
 ## Features
 
