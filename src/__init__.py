@@ -13,7 +13,7 @@ from DSImgur import DSImgur
 def main(argv=sys.argv[0]):
 	parser = argparse.ArgumentParser(
 		description = "Easily download images, Albums, Galleries and entire Profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!")
-	parser.add_argument("--threads", type=int, default=5, 
+	parser.add_argument("--workers", type=int, default=5, 
 		help="Number of parallel downloads. The default is 5.")
 	parser.add_argument("--output", type=str, default="downloads", 
 		help="Output folder")
@@ -30,7 +30,7 @@ def main(argv=sys.argv[0]):
 		protocol = 'http://'
 
 	try:
-		i = DSImgur(args.threads, args.output,protocol)
+		i = DSImgur(args.workers, args.output,protocol)
 		i.addUrl(args.urls)
 		i.download()
 

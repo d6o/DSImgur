@@ -2,6 +2,8 @@
 
 Easily download images, Albums, Galleries and entire Profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!
 
+![](https://i.imgur.com/Sh2TKvy.gif)
+
 ## Features
 
 - Download Single Images ex.: https://imgur.com/EJtc5ox or http://i.imgur.com/EJtc5ox.jpg
@@ -85,7 +87,7 @@ DSImgur(urls, workers, output)
 
 ## Program Help
 
-![](https://i.imgur.com/mKHbLay.png)
+![](https://i.imgur.com/D0X7T1S.png)
 
 ## Contributing
 
@@ -116,7 +118,7 @@ $ cd DSImgur/src/
 
 The MIT License (MIT)
 
-Copyright (c) 2013-2015 Diego Siqueira
+Copyright (c) 2016 Diego Siqueira
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -135,62 +137,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Imgur
-A perfect Imgur Downloader
-
-## Requirements
-
-* [Python](https://www.python.org)
-
-## Usage
-
-```bash
-Imgur.py [-h] [--threads THREADS] [--output OUTPUT] urls [urls ...]
-
-A perfect Imgur Downloader.
-
-positional arguments:
-  urls               URLs to be downloaded
-
-optional arguments:
-  -h, --help         show this help message and exit
-  --threads THREADS  Number of parallel downloads. The default is 5.
-  --output OUTPUT    Output folder
-```
-
-###Example 1
-```bash
- python Imgur.py https://imgur.com/gallery/0vs7ne8
-```
-###Example 2
-```bash
- python Imgur.py --threads 2 https://imgur.com/gallery/bqT8w https://imgur.com/a/0vs7ne8
-```
-###Example 3
-```bash
- python Imgur.py --threads 2 --output myimages https://imgur.com/NE6j4u3 https://imgur.com/gallery/bqT8w https://imgur.com/a/0vs7ne8 https://i.imgur.com/V0UW3P0.webm
-```
-
-## Find a bug/issue or simply want to request a new feature?
-
-[Create a Github issue/feature request!](https://github.com/DiSiqueira/Imgur/issues/new)
