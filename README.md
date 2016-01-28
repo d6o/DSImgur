@@ -84,6 +84,10 @@ output = 'My-Files'
 
 DSImgur(urls, workers, output)
 ```
+## Requirements
+
+* [Python](https://www.python.org)
+* [DSDownload](https://github.com/DiSiqueira/DSDownload)
 
 ## Program Help
 
