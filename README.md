@@ -2,6 +2,8 @@
 
 Easily download images, Albums, Galleries and entire Profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!
 
+![](https://i.imgur.com/Sh2TKvy.gif)
+
 ## Features
 
 - Download Single Images ex.: https://imgur.com/EJtc5ox or http://i.imgur.com/EJtc5ox.jpg
@@ -116,7 +118,7 @@ $ cd DSImgur/src/
 
 The MIT License (MIT)
 
-Copyright (c) 2013-2015 Diego Siqueira
+Copyright (c) 2016 Diego Siqueira
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
