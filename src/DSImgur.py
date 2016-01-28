@@ -108,9 +108,12 @@ class DSImgur:
 		url = self.profile_link.replace('{subdomain}',subdomain)
 		url = url.replace('{page}',str(page))
 
-		content = urllib.urlopen(url)
+			content = urllib.urlopen(url)
 
-		result = json.load(content)
+	    try:
+			result = json.load(content)
+	    except ValueError, e:
+	        raise MalformedJsonFileError('%s when reading "%s"' % (str(e),path))
 
 		if type(result) is not dict:
 			return False

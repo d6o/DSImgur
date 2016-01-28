@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
   name = 'DSImgur',
-  version = '1.0.0.0',
+  version = '1.0.0.1',
   description = 'Easily download images, Albums, Galleries and entire Profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!',
   url = 'https://github.com/DiSiqueira/DSImgur',
   author = 'Diego Siqueira',
