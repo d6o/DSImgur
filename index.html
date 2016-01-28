@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>DSImgur by DiSiqueira</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>DSImgur</h1>
+          <h2>Easily download images, Albums, Galleries and entire Profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/DiSiqueira/DSImgur/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/DiSiqueira/DSImgur/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/DiSiqueira/DSImgur" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>
+<a id="dsimgur---" class="anchor" href="#dsimgur---" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DSImgur <img src="https://img.shields.io/badge/Language-Python-red.svg" alt="Language Badge"> <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License Badge"> <img src="https://img.shields.io/badge/Status-Stable-brightgreen.svg" alt="Status Badge">
+</h1>
+
+<p>Easily download images, Albums, Galleries and entire Profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!</p>
+
+<p><img src="https://i.imgur.com/Sh2TKvy.gif" alt=""></p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Download Single Images ex.: <a href="https://imgur.com/EJtc5ox">https://imgur.com/EJtc5ox</a> or <a href="http://i.imgur.com/EJtc5ox.jpg">http://i.imgur.com/EJtc5ox.jpg</a>
+</li>
+<li>Download Entire Albums ex.: <a href="https://imgur.com/a/iwWZm">https://imgur.com/a/iwWZm</a> </li>
+<li>Download Entire Galleries ex.: <a href="https://imgur.com/gallery/3ttnIn2">https://imgur.com/gallery/3ttnIn2</a>
+</li>
+<li>Download Entire PROFILES ex.: <a href="https://imgur.com/user/azyrusmax/">https://imgur.com/user/azyrusmax/</a> or <a href="https://imgur.com/account/azyrusmax/">https://imgur.com/account/azyrusmax/</a>
+</li>
+<li>Written in uncomplicated Python</li>
+<li>Easily download files in the fastest speed possible</li>
+<li>Download using Multi-Threaded Downloads</li>
+<li>Easy to <a href="https://github.com/DiSiqueira/DSImgur#installation">install</a>
+</li>
+<li>Stupidly <a href="https://github.com/DiSiqueira/DSImgur#usage">easy to use</a>
+</li>
+<li>Download 100 files in less than 40s</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<h3>
+<a id="option-1-pip" class="anchor" href="#option-1-pip" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Option 1: <a href="https://pip.pypa.io/en/stable/installing/">Pip</a>
+</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ pip install DSImgur</pre></div>
+
+<h3>
+<a id="option-2-from-source" class="anchor" href="#option-2-from-source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Option 2: From source</h3>
+
+<div class="highlight highlight-source-shell"><pre>$ git clone https://github.com/DiSiqueira/DSImgur.git
+$ <span class="pl-c1">cd</span> DSImgur/
+$ python setup.py install</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="basic-usage" class="anchor" href="#basic-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic usage</h3>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># Download a image</span>
+$ DSImgur https://imgur.com/eUrbKtO
+<span class="pl-c"># Download a direct</span>
+$ DSImgur https://i.imgur.com/eUrbKtO.jpg
+<span class="pl-c"># Download a Album</span>
+$ DSImgur https://imgur.com/a/iwWZm
+<span class="pl-c"># Download a Gallery</span>
+$ DSImgur https://imgur.com/gallery/3ttnIn2
+<span class="pl-c"># Download a Entire Profile</span>
+$ DSImgur https://imgur.com/user/azyrusmax</pre></div>
+
+<h3>
+<a id="download-using-workers" class="anchor" href="#download-using-workers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Download using Workers</h3>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># Download 1 image and 2 albums using 2 Workers</span>
+$ DSImgur --workers 2 https://i.imgur.com/eUrbKtO.jpg https://imgur.com/a/iwWZm https://imgur.com/a/3ttnIn2</pre></div>
+
+<h3>
+<a id="set-output-folder" class="anchor" href="#set-output-folder" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Set output folder</h3>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># Download 1 image and put it in my-images folder</span>
+$ DSImgur --output my-images https://i.imgur.com/eUrbKtO.jpg</pre></div>
+
+<h3>
+<a id="combine-everything" class="anchor" href="#combine-everything" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Combine everything</h3>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># Download 1 image and 2 albums using 2 Workers and put on my-images folder</span>
+$ DSImgur --output my-images --workers 2 https://i.imgur.com/eUrbKtO.jpg https://imgur.com/a/iwWZm https://imgur.com/a/3ttnIn2</pre></div>
+
+<h2>
+<a id="module-usage" class="anchor" href="#module-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Module Usage</h2>
+
+<p>The module allows you to download url lists in your own Python programs without going through the command line. Here's an example of it's usage:</p>
+
+<h3>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h3>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">from</span> DSImgur <span class="pl-k">import</span> DSImgur
+
+urls <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>https://imgur.com/eUrbKtOg<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>https://i.imgur.com/eUrbKtO.jpg<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>https://imgur.com/a/iwWZm<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>https://imgur.com/gallery/3ttnIn2<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>https://imgur.com/user/azyrusmax<span class="pl-pds">'</span></span>]
+workers <span class="pl-k">=</span> <span class="pl-c1">2</span>
+output <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>My-Files<span class="pl-pds">'</span></span>
+
+DSImgur(urls, workers, output)</pre></div>
+
+<h2>
+<a id="program-help" class="anchor" href="#program-help" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Program Help</h2>
+
+<p><img src="https://i.imgur.com/mKHbLay.png" alt=""></p>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<h3>
+<a id="bug-reports--feature-requests" class="anchor" href="#bug-reports--feature-requests" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Bug Reports &amp; Feature Requests</h3>
+
+<p>Please use the <a href="https://github.com/DiSiqueira/DSImgur/issues">issue tracker</a> to report any bugs or file feature requests.</p>
+
+<h3>
+<a id="developing" class="anchor" href="#developing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developing</h3>
+
+<p>PRs are welcome. To begin developing, do this:</p>
+
+<div class="highlight highlight-source-shell"><pre>$ git clone --recursive git@github.com:DiSiqueira/DSImgur.git
+$ <span class="pl-c1">cd</span> DSImgur/src/</pre></div>
+
+<h2>
+<a id="social-coding" class="anchor" href="#social-coding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Social Coding</h2>
+
+<ol>
+<li>Create an issue to discuss about your idea</li>
+<li><a href="https://github.com/DiSiqueira/DSImgur/fork">Fork it</a></li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create a new Pull Request</li>
+<li>Profit! <img class="emoji" title=":white_check_mark:" alt=":white_check_mark:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/2705.png" height="20" width="20" align="absmiddle">
+</li>
+</ol>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>The MIT License (MIT)</p>
+
+<p>Copyright (c) 2016 Diego Siqueira</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</p>
+        </section>
+
+        <footer>
+          DSImgur is maintained by <a href="https://github.com/DiSiqueira">DiSiqueira</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
