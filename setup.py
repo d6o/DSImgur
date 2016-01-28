@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
   name = 'DSImgur',
-  version = '0.1.0.2',
+  version = '1.0.0.0',
   description = 'Easily download images, Albums, Galleries and entire Profiles from Imgur. The most powerful Imgur Downloader!! You can use as program or as module!',
   url = 'https://github.com/DiSiqueira/DSImgur',
   author = 'Diego Siqueira',
@@ -11,7 +11,7 @@ setup(
   package_dir = { 'DSImgur' : 'src' },
   packages = [ 'DSImgur' ],
   zip_safe = False, 
-  keywords = ['download', 'thread', 'speed', 'resume', 'multi', 'simple'],
+  keywords = ['download', 'thread', 'speed', 'resume', 'multi', 'simple', 'imgur', 'album', 'gallery', 'images'],
   entry_points = 
   {
       'console_scripts': 
