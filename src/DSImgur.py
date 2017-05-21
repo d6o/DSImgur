@@ -18,11 +18,11 @@
 import sys
 import argparse
 import re
-import urlparse
+import urllib.parse
 import json
 
 if sys.version_info[0] == 2:
-    import urllib
+    import urllib.request, urllib.parse, urllib.error
 else:
     import urllib.request as urllib
     
@@ -71,7 +71,7 @@ class DSImgur:
         direct     = re.compile('(\/[a-zA-Z\d]+)(\.\w{3,4})')
 
         for url in self._urlList:
-            parse         = urlparse.urlparse(url)
+            parse         = urllib.parse.urlparse(url)
 
             #Junk urls
             if parse.netloc.find('imgur.com') < 0 :
@@ -108,11 +108,11 @@ class DSImgur:
         url = self.profile_link.replace('{subdomain}',subdomain)
         url = url.replace('{page}',str(page))
 
-        content = urllib.urlopen(url)
+        content = urllib.request.urlopen(url)
 
         try:
             result = json.load(content)
-        except ValueError, e:
+        except ValueError as e:
             return False
 
         if type(result) is not dict:
@@ -125,12 +125,12 @@ class DSImgur:
 
     def _getProfileAlbums(self, subdomain):
         url = self.albums_link.replace('{subdomain}',subdomain)
-        content = urllib.urlopen(url)
+        content = urllib.request.urlopen(url)
 
         data = content.read()
         content.close()
 
-        regex        = ur"id=\"album-(.+?)\""
+        regex        = r"id=\"album-(.+?)\""
         album_list    = re.findall(regex, data)
 
         return album_list
