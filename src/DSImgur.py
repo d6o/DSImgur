@@ -18,13 +18,14 @@
 import sys
 import argparse
 import re
-import urlparse
+import urllib.parse
 import json
 
 if sys.version_info[0] == 2:
     import urllib
 else:
     import urllib.request as urllib
+    import urllib.parse as urlparse
     
 # https://github.com/DiSiqueira/DSDownload
 from DSDownload import DSDownload
@@ -112,7 +113,7 @@ class DSImgur:
 
         try:
             result = json.load(content)
-        except ValueError, e:
+        except ValueError as e:
             return False
 
         if type(result) is not dict:
@@ -130,7 +131,7 @@ class DSImgur:
         data = content.read()
         content.close()
 
-        regex        = ur"id=\"album-(.+?)\""
+        regex        = r"id=\"album-(.+?)\""
         album_list    = re.findall(regex, data)
 
         return album_list

@@ -8,7 +8,7 @@ DSImgur - Easily download images, Albums, Galleries and entire Profiles from Img
 
 import sys
 import argparse
-from DSImgur import DSImgur
+from .DSImgur import DSImgur
 
 def main(argv=sys.argv[0]):
 	parser = argparse.ArgumentParser(
@@ -34,9 +34,9 @@ def main(argv=sys.argv[0]):
 		i.addUrl(args.urls)
 		i.download()
 
-		print 'All images have been downloaded.'
+		print('All images have been downloaded.')
 	except KeyboardInterrupt:
-		print 'Interrupt received, stopping downloads'
+		print('Interrupt received, stopping downloads')
 
 	sys.exit()
 
