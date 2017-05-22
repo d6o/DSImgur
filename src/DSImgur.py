@@ -22,9 +22,10 @@ import urllib.parse
 import json
 
 if sys.version_info[0] == 2:
-    import urllib.request, urllib.parse, urllib.error
+    import urllib
 else:
     import urllib.request as urllib
+    import urllib.parse as urlparse
     
 # https://github.com/DiSiqueira/DSDownload
 from DSDownload import DSDownload
@@ -71,7 +72,7 @@ class DSImgur:
         direct     = re.compile('(\/[a-zA-Z\d]+)(\.\w{3,4})')
 
         for url in self._urlList:
-            parse         = urllib.parse.urlparse(url)
+            parse         = urlparse.urlparse(url)
 
             #Junk urls
             if parse.netloc.find('imgur.com') < 0 :
@@ -108,7 +109,7 @@ class DSImgur:
         url = self.profile_link.replace('{subdomain}',subdomain)
         url = url.replace('{page}',str(page))
 
-        content = urllib.request.urlopen(url)
+        content = urllib.urlopen(url)
 
         try:
             result = json.load(content)
@@ -125,7 +126,7 @@ class DSImgur:
 
     def _getProfileAlbums(self, subdomain):
         url = self.albums_link.replace('{subdomain}',subdomain)
-        content = urllib.request.urlopen(url)
+        content = urllib.urlopen(url)
 
         data = content.read()
         content.close()
